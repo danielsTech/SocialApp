@@ -1,0 +1,1 @@
+extension FunctionExtensions on Function {}
