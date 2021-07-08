@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:social_app/app/utils/widgets.dart';
 import 'package:social_app/ui/views/feed/feed_view_model.dart';
+import 'package:social_app/ui/widgets/playback/image_playback_widget.dart';
 import 'package:stacked/stacked.dart';
 
 class ProfileAvatarWidget extends StatelessWidget {
@@ -8,7 +10,7 @@ class ProfileAvatarWidget extends StatelessWidget {
   final double? size;
   final bool ripple;
 
-  final double? borderRadius;
+  final double borderRadius;
 
   const ProfileAvatarWidget({
     this.url,
@@ -19,7 +21,7 @@ class ProfileAvatarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<FeedViewModel>.reactive(
+    return ViewModelBuilder<FeedViewModel>.nonReactive(
       disposeViewModel: false,
       viewModelBuilder: () => FeedViewModel(),
       builder: (context, viewModel, _) => Stack(
@@ -28,27 +30,21 @@ class ProfileAvatarWidget extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(23.0),
+              borderRadius: BorderRadius.circular(borderRadius + 3),
               boxShadow: [
-                BoxShadow(
+                WidgetsUtil.shadow(
                   color: Colors.black.withOpacity(0.15),
-                  blurRadius: 4.0,
-                  spreadRadius: 5.0,
-                  offset: Offset.zero,
+                  spread: 5,
+                  blur: 4,
                 ),
               ],
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(this.borderRadius!),
-              child: CachedNetworkImage(
-                fit: BoxFit.cover,
+              borderRadius: BorderRadius.circular(this.borderRadius),
+              child: ImagePlaybackWidget(
                 width: this.size,
                 height: this.size,
-                imageUrl: this.url ?? '',
-                maxWidthDiskCache: this.size!.toInt() * 4,
-                maxHeightDiskCache: this.size!.toInt() * 4,
-                // fadeInDuration: AnimationDurations.profileAvatarFadeInAnimationDuration,
-                // fadeOutDuration: AnimationDurations.profileAvatarFadeInAnimationDuration,
+                imageUrl: this.url,
               ),
             ),
           ),
@@ -97,7 +93,7 @@ class ProfileAvatarWidget extends StatelessWidget {
         height: this.size,
         decoration: BoxDecoration(
           // shape: BoxShape.circle,
-          borderRadius: BorderRadius.circular(this.borderRadius! - 1.5),
+          borderRadius: BorderRadius.circular(this.borderRadius - 1.5),
           border: Border.all(color: Colors.white, width: 0.7),
         ),
       );

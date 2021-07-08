@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class WidgetsUtil {
-  static Widget horizontalSpace(final double _width) => SizedBox(width: _width);
-  static Widget verticalSpace(final double _height) => SizedBox(height: _height);
+  static Widget horizontalSpace(double width) => SizedBox(width: width);
+  static Widget verticalSpace(double height) => SizedBox(height: height);
 
   static BoxDecoration foregroundFade(
     final Color color1,

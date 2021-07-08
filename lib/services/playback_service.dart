@@ -13,7 +13,7 @@ class PlaybackSerivce {
   final _postsService = AppLocator.locator<PostsService>();
 
   Future<void> videoPlaybackLoad(int index) async {
-    if (_postsService.videosPostsCount > index) {
+    if (index < _postsService.videosPostsCount) {
       await _postsService.videoPosts[index].playback?.loadController();
       if (index == 0) await _postsService.videoPosts[index].playback?.videoController!.playVideo;
     }

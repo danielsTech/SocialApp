@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:social_app/app/data/const.dart';
@@ -20,7 +18,7 @@ class TTFeedButton extends ViewModelWidget<BottomBarViewModel> {
       },
       behavior: HitTestBehavior.translucent,
       child: Container(
-        height: Constants.bottomBarHeight,
+        height: AppConstants.bottomBarHeight,
         child: Icon(
           Icons.subject_rounded,
           size: 30.0,

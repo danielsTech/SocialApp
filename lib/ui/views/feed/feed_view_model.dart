@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:social_app/app/data/enums.dart';
-import 'package:social_app/app/debug/log.dart';
 import 'package:social_app/app/locator/locator.dart';
 import 'package:social_app/app/models/playback.dart';
 import 'package:social_app/app/models/post.dart';
@@ -30,7 +28,7 @@ class FeedViewModel extends BaseViewModel {
 
   void onTTHalfSwipe(int index) async {
     _playbackService.playAndPauseVideoBySwipe(index, _ttPrevHalfSwipeIndex);
-    await _playbackService.videoPlaybackPreload(index);
+    _playbackService.videoPlaybackPreload(index);
 
     _animationsService.resetPlayAndPauseAnimation;
 
@@ -49,11 +47,13 @@ class FeedViewModel extends BaseViewModel {
   bool _pageIsScrolling = false;
 
   void _ttFeedScrollListener() {
-    if (_pageIsScrolling && _ttSwiperController.page == _ttSwiperController.page!.roundToDouble()) {
-      _currentTTPostIndex = _ttSwiperController.page!.toInt();
+    final double? _page = _ttSwiperController.page;
+
+    if (_pageIsScrolling && _page == _page!.roundToDouble()) {
+      _currentTTPostIndex = _page.toInt();
       _pageIsScrolling = false;
-    } else if (!_pageIsScrolling && _currentTTPostIndex.toDouble() != _ttSwiperController.page) {
-      if ((_currentTTPostIndex.toDouble() - _ttSwiperController.page!).abs() > 0.05) {
+    } else if (!_pageIsScrolling && _currentTTPostIndex.toDouble() != _page) {
+      if ((_currentTTPostIndex.toDouble() - _page!).abs() > 0.05) {
         _pageIsScrolling = true;
       }
     }

@@ -43,14 +43,14 @@ class _Bar extends ViewModelWidget<BottomBarViewModel> {
   Widget build(BuildContext context, BottomBarViewModel viewModel) {
     return Container(
       width: ScreenUtil.screenWidthLp,
-      height: Constants.bottomBarHeight,
+      height: AppConstants.bottomBarHeight,
       padding: const EdgeInsets.symmetric(horizontal: 6.0),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
             color: Colors.black,
-            offset: Offset(0.0, viewModel.selectedTabIndex != 1 ? 40.0 : 0.0),
-            blurRadius: 60.0,
+            offset: Offset(0.0, viewModel.selectedTabIndex != 1 ? 50.0 : 0.0),
+            blurRadius: 50.0,
             spreadRadius: 35.0,
           ),
         ],

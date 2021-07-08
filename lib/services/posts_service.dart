@@ -3,7 +3,6 @@ import 'package:social_app/app/locator/locator.dart';
 import 'package:social_app/app/models/post.dart';
 import 'package:social_app/mock_data.dart';
 import 'package:social_app/services/playback_service.dart';
-import 'package:social_app/ui/views/feed/feed_view_model.dart';
 
 class PostsService {
   List<Post> _videoPosts = [];
@@ -15,18 +14,18 @@ class PostsService {
   int get videosPostsCount => _videoPosts.length;
   int get imagesPostsCount => _imagePosts.length;
 
-  set addVideoPost(final Post post) => _videoPosts.add(post);
-  set addImagePost(final Post post) => _imagePosts.add(post);
+  set addVideoPost(Post post) => _videoPosts.add(post);
+  set addImagePost(Post post) => _imagePosts.add(post);
 
   Future<void> loadInitialVideoPosts() async {
-    for (int index = 0; index < Constants.initialVideoPostsCountLoad; index++) {
+    for (int index = 0; index < AppConstants.initialVideoPostsCountLoad; index++) {
       await loadPost(index);
       _loadPlayback(index);
     }
   }
 
   Future<void> loadInitialImagePosts() async {
-    for (int index = 0; index < Constants.initialImagePostsCountLoad; index++) {
+    for (int index = 0; index < AppConstants.initialImagePostsCountLoad; index++) {
       await loadPost(index, video: false);
       _loadPlayback(index, video: false);
     }
@@ -34,7 +33,7 @@ class PostsService {
 
   static void _loadPlayback(
     int index, {
-    final bool video = true,
+    bool video = true,
   }) =>
       video
           ? AppLocator.locator<PlaybackSerivce>().videoPlaybackLoad(index)
@@ -42,7 +41,7 @@ class PostsService {
 
   Future<void>? loadPost(
     int index, {
-    final bool video = true,
+    bool video = true,
   }) async {
     if (video) {
       if (index < mockVideoPosts.length) {

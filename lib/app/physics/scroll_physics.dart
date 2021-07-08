@@ -17,4 +17,5 @@ class _CustomTTFeedCarouselScrollPhysics extends ScrollPhysics {
   @override
   SpringDescription get spring => const SpringDescription(mass: 52.5, stiffness: 25.5, damping: 1.15);
   // const SpringDescription(mass: 65, stiffness: 25.7, damping: 1.1);
+
 }

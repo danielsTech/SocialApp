@@ -14,14 +14,15 @@ class PlayOrPauseWidget extends ViewModelWidget<FeedViewModel> {
     double _iconOpacity = viewModel.playAndPauseAnimationController.value;
     double _iconScale = (1.4 - 0.4 * viewModel.playAndPauseAnimation.value);
     return Center(
-        child: Padding(
-      padding: const EdgeInsets.only(bottom: 22.0),
-      child: AnimatedIcon(
-        icon: _playPauseIcon,
-        size: 78.0,
-        color: Colors.white,
-        progress: viewModel.playAndPauseIconAnimationController,
-      ).opacity(_iconOpacity).scale(_iconScale),
-    ));
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 22.0),
+        child: AnimatedIcon(
+          icon: _playPauseIcon,
+          size: 78.0,
+          color: Colors.white,
+          progress: viewModel.playAndPauseIconAnimationController,
+        ).opacity(_iconOpacity).scale(_iconScale),
+      ),
+    );
   }
 }

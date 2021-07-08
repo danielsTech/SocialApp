@@ -6,7 +6,7 @@ import 'package:social_app/app/utils/widgets.dart';
 import 'package:social_app/ui/views/feed/feed_view_model.dart';
 import 'package:social_app/ui/widgets/playback/image_playback_widget.dart';
 import 'package:social_app/ui/widgets/playback/video_playback_widget.dart';
-import 'package:social_app/ui/widgets/user/profile_avatar_widget.dart';
+import 'package:social_app/ui/widgets/shared/profile_avatar_widget.dart';
 import 'package:stacked/stacked.dart';
 
 class IGPost extends ViewModelWidget<FeedViewModel> {
@@ -38,7 +38,7 @@ class IGPost extends ViewModelWidget<FeedViewModel> {
               borderRadius: 11.0,
               url: this.post!.user!.avatarUrl!,
             ),
-            SizedBox(width: 10.0),
+            WidgetsUtil.horizontalSpace(10),
             Text(
               '${this.post!.user!.username}',
               overflow: TextOverflow.ellipsis,
@@ -80,9 +80,7 @@ class IGPost extends ViewModelWidget<FeedViewModel> {
             bottomLeft: _borderBottom,
             bottomRight: _borderBottom,
           ),
-          child: ImagePlaybackWidget(
-            imageUrl: this.post!.playback!.url,
-          ),
+          child: ImagePlaybackWidget(imageUrl: this.post!.playback!.url),
         ),
       );
 }

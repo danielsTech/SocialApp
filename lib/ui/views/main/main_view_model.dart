@@ -15,7 +15,7 @@ class MainViewModel extends BaseViewModel {
 
   Future<Null> appInitialLoad() async {
     await _postsService.loadInitialVideoPosts();
-    _postsService.loadInitialImagePosts();
+    // _postsService.loadInitialImagePosts();
     makeAppLoaded = true;
   }
 }

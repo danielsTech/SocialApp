@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
 
 extension WidgetExtensions on Widget {
-  Widget rotate(final double _angle) => Transform.rotate(angle: _angle, child: this);
+  Widget rotate(double angle) => Transform.rotate(
+        angle: angle,
+        child: this,
+      );
 
-  Widget scale(final double _scale, {final AlignmentGeometry alignmentGeometry = Alignment.center}) =>
-      Transform.scale(alignment: alignmentGeometry, scale: _scale, child: this);
+  Widget scale(double scale, {AlignmentGeometry alignmentGeometry = Alignment.center}) => Transform.scale(
+        alignment: alignmentGeometry,
+        scale: scale,
+        child: this,
+      );
 
-  Widget opacity(final double _opacity) => Opacity(opacity: _opacity, child: this);
+  Widget opacity(double opacity) => Opacity(
+        opacity: opacity,
+        child: this,
+      );
 
-  Widget translatePx(final double _x, final double _y) => Transform.translate(offset: Offset(_x, _y), child: this);
+  Widget translatePx(double x, double y) => Transform.translate(
+        offset: Offset(x, y),
+        child: this,
+      );
 
   Widget solidBadge({
-    final double radius = 4.5,
-    final Color color = Colors.red,
+    double radius = 4.5,
+    Color color = Colors.red,
   }) =>
       Stack(
         overflow: Overflow.visible,
@@ -28,9 +40,9 @@ extension WidgetExtensions on Widget {
       );
 
   Widget counterBadge({
-    @required final int? counter,
-    final double fontSize = 15.0,
-    final double radius = 10.0,
+    @required int? counter,
+    double fontSize = 15.0,
+    double radius = 10.0,
   }) {
     final _countText = counter.toString();
     final _deltaFontSize = (_countText.length - 1) * 2.5;

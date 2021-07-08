@@ -1,10 +1,8 @@
-import 'package:social_app/app/utils/screen.dart';
-
-class Constants {
+abstract class AppConstants {
   // UI
   static const double bottomBarHeight = 54.0;
 
   // FUNC
-  static const int initialVideoPostsCountLoad = 5;
+  static const int initialVideoPostsCountLoad = 3;
   static const int initialImagePostsCountLoad = 8;
 }

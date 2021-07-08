@@ -18,7 +18,7 @@ class DataButton extends ViewModelWidget<BottomBarViewModel> {
       },
       behavior: HitTestBehavior.translucent,
       child: Container(
-        height: Constants.bottomBarHeight,
+        height: AppConstants.bottomBarHeight,
         // color: Colors.purple,
         child: Icon(
           Icons.data_saver_off_rounded,

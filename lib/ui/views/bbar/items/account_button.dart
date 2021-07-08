@@ -18,7 +18,7 @@ class AccountButton extends ViewModelWidget<BottomBarViewModel> {
       },
       behavior: HitTestBehavior.translucent,
       child: Container(
-        height: Constants.bottomBarHeight,
+        height: AppConstants.bottomBarHeight,
         // color: Colors.yellow,
         child: Icon(
           Icons.account_circle_outlined,

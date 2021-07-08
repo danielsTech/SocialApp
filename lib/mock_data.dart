@@ -15,7 +15,7 @@ final List<Post> mockVideoPosts = [
   ),
   Post(
     playback: Playback(
-      url: "https://assets.mixkit.co/videos/preview/mixkit-white-flowers-in-the-breeze-1187-large.mp4",
+      url: "https://assets.mixkit.co/videos/preview/mixkit-tree-with-yellow-flowers-1173-large.mp4",
     ),
     user: UserModel(
       username: 'cat_02',

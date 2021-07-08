@@ -4,21 +4,19 @@ import 'package:social_app/app/data/const.dart';
 import 'package:social_app/app/models/post.dart';
 import 'package:social_app/app/utils/screen.dart';
 import 'package:social_app/app/utils/widgets.dart';
-import 'package:social_app/main.dart';
-import 'package:social_app/ui/views/account/account_view.dart';
 import 'package:social_app/ui/views/feed/feed_view_model.dart';
-import 'package:social_app/ui/widgets/delayed/loading_widget.dart';
+import 'package:social_app/ui/widgets/buttons/comments_button_widget.dart';
+import 'package:social_app/ui/widgets/buttons/like_button_widget.dart';
+import 'package:social_app/ui/widgets/buttons/share_button_widget.dart';
 import 'package:social_app/ui/widgets/icons/play_or_pause_widget.dart';
 import 'package:social_app/ui/widgets/playback/video_playback_widget.dart';
-import 'package:social_app/ui/widgets/user/profile_avatar_widget.dart';
+import 'package:social_app/ui/widgets/shared/profile_avatar_widget.dart';
 import 'package:stacked/stacked.dart';
-import 'package:video_player/video_player.dart';
 
-// ignore: must_be_immutable
 class TTPost extends ViewModelWidget<FeedViewModel> {
-  Post? post;
+  final Post? post;
 
-  TTPost(this.post) : super(reactive: true);
+  const TTPost(this.post) : super(reactive: false);
 
   @override
   Widget build(BuildContext context, FeedViewModel viewModel) {
@@ -28,28 +26,31 @@ class TTPost extends ViewModelWidget<FeedViewModel> {
         fit: StackFit.expand,
         children: [
           _playback,
-          Positioned(
-              left: 0.0,
-              bottom: 83.0,
-              child: Container(
-                width: ScreenUtil.screenWidthLp - 115.0,
-                height: 78.0,
-                decoration: BoxDecoration(boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.4),
-                    blurRadius: 60.0,
-                    spreadRadius: 8.0,
-                    offset: Offset.zero,
-                  )
-                ]),
-              )),
-          PlayOrPauseWidget(),
           _rightBar,
+          _playOrPause,
+          _descriptionFade,
           _usernameAndEmail,
         ],
       ),
     );
   }
+
+  Widget get _descriptionFade => Positioned(
+      left: 0.0,
+      bottom: 83.0,
+      child: Container(
+        width: ScreenUtil.screenWidthLp - 115.0,
+        height: 78.0,
+        decoration: BoxDecoration(boxShadow: [
+          WidgetsUtil.shadow(
+            color: Colors.black.withOpacity(0.4),
+            spread: 8,
+            blur: 60,
+          ),
+        ]),
+      ));
+
+  Widget get _playOrPause => PlayOrPauseWidget();
 
   Widget get _playback => Positioned.fill(
         child: VideoPlaybackWidget(
@@ -66,65 +67,24 @@ class TTPost extends ViewModelWidget<FeedViewModel> {
 
   Widget get _rightBar => Positioned(
         right: 14.0,
-        bottom: Constants.bottomBarHeight + 31.0,
+        bottom: AppConstants.bottomBarHeight + 31.0,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Column(
-              children: [
-                Icon(
-                  Icons.favorite_rounded,
-                  size: 40.0,
-                  color: Colors.white,
-                ),
-                Text(
-                  '78.3K',
-                  style: TextStyle(color: Colors.white, fontSize: 13.0, fontWeight: FontWeight.w500),
-                )
-              ],
-            ),
-            SizedBox(height: 27.0),
-            Column(
-              children: [
-                Icon(
-                  Icons.comment_outlined,
-                  size: 38.0,
-                  color: Colors.white,
-                ),
-                Text(
-                  '4.8K',
-                  style: TextStyle(color: Colors.white, fontSize: 13.0, fontWeight: FontWeight.w500),
-                )
-              ],
-            ),
-            SizedBox(height: 23.0),
-            InkWell(
-              onTap: () {
-                // Navigator.push(_ctx!, new MaterialPageRoute(builder: (BuildContext context) => new ListViewPage()));
-              },
-              child: Column(
-                children: [
-                  Icon(Icons.send_rounded, size: 37.0, color: Colors.white),
-                  SizedBox(height: 2.0),
-                  Text(
-                    '0.9K',
-                    style: TextStyle(color: Colors.white, fontSize: 13.0, fontWeight: FontWeight.w500),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(height: 28.0),
-            ProfileAvatarWidget(
-              size: 57.0,
-              url: post!.user!.avatarUrl!,
-            ),
+            LikeButtonWidget(count: 8264, onPress: () {}),
+            WidgetsUtil.verticalSpace(27),
+            CommentsButtonWidget(count: 832, onPress: () {}),
+            WidgetsUtil.verticalSpace(23),
+            ShareButtonWidget(count: 128, onPress: () {}),
+            WidgetsUtil.verticalSpace(28),
+            ProfileAvatarWidget(size: 57.0, url: post!.user!.avatarUrl!),
           ],
         ),
       );
 
   Widget get _usernameAndEmail => Positioned(
         left: 14.0,
-        bottom: Constants.bottomBarHeight + 33.0,
+        bottom: AppConstants.bottomBarHeight + 33.0,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -141,7 +101,7 @@ class TTPost extends ViewModelWidget<FeedViewModel> {
                 ),
               ),
             ),
-            SizedBox(height: 7.0),
+            WidgetsUtil.verticalSpace(7),
             LimitedBox(
               maxWidth: ScreenUtil.screenWidthLp - 120.0,
               child: Text(

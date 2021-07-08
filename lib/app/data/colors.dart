@@ -1,1 +1,1 @@
-class AppColors {}
+abstract class AppColors {}

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:social_app/app/anim/controllers.dart';
-import 'package:social_app/app/anim/durations.dart';
 import 'package:social_app/app/data/strings.dart';
 import 'package:social_app/app/locator/locator.dart';
 import 'package:social_app/app/provider/screen.dart';
@@ -40,12 +39,11 @@ class _AppEntryState extends State<AppEntry> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        // ChangeNotifierProvider(create: (context) => ThemeProvider()),
         ChangeNotifierProvider(create: (context) => ScreenProvider()),
-        // ChangeNotifierProvider(create: (context) => widget.mainViewModel!),
       ],
       builder: (context, _) {
-        final _themeProvider = Provider.of<ThemeProvider>(context);
+        // final _themeProvider = Provider.of<ThemeProvider>(context);
 
         return MaterialApp(
           title: AppStrings.appTitle,
@@ -53,9 +51,9 @@ class _AppEntryState extends State<AppEntry> with TickerProviderStateMixin {
           onGenerateRoute: AppRouter.generateRoute,
           initialRoute: _initialRoute,
           navigatorKey: _navigatorKey,
-          themeMode: _themeProvider.themeMode,
+          // themeMode: _themeProvider.themeMode,
           darkTheme: AppThemes.darkTheme,
-          theme: AppThemes.lightTheme,
+          // theme: AppThemes.lightTheme,
         );
       },
     );

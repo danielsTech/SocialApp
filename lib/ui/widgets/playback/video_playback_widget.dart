@@ -20,18 +20,12 @@ class VideoPlaybackWidget extends StatelessWidget {
       future: this.playback!.initializeVideoPlayerFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          final VideoPlayerValue _videoPlayerValue = this.playback!.videoController!.getVideoValue;
-
-          final double _aspectRatio = _videoPlayerValue.aspectRatio;
-
-          final bool _contain = _aspectRatio > 1.3 ? true : false;
-
-          final BoxFit _fit = _contain ? BoxFit.contain : BoxFit.cover;
+          VideoPlayerValue _videoPlayerValue = this.playback!.videoController!.getVideoValue;
 
           return Container(
             foregroundDecoration: this.foreground,
             child: FittedBox(
-              fit: _fit,
+              fit: _videoPlayerValue.aspectRatio > 1.3 ? BoxFit.contain : BoxFit.cover,
               child: SizedBox(
                 width: _videoPlayerValue.size.width,
                 height: _videoPlayerValue.size.height,

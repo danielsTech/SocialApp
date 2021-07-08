@@ -18,7 +18,7 @@ class IGFeedButton extends ViewModelWidget<BottomBarViewModel> {
       },
       behavior: HitTestBehavior.translucent,
       child: Container(
-        height: Constants.bottomBarHeight,
+        height: AppConstants.bottomBarHeight,
         child: Icon(
           Icons.filter,
           size: 24.0,
