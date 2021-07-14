@@ -1,9 +1,11 @@
 import 'package:social_app/app/locator/locator.dart';
+import 'package:social_app/services/camera_service.dart';
 import 'package:social_app/services/posts_service.dart';
 import 'package:stacked/stacked.dart';
 
 class MainViewModel extends BaseViewModel {
   final _postsService = AppLocator.locator<PostsService>();
+  final _cameraService = AppLocator.locator<CameraService>();
 
   bool _appLoaded = false;
   bool get appLoaded => _appLoaded;
@@ -15,7 +17,7 @@ class MainViewModel extends BaseViewModel {
 
   Future<Null> appInitialLoad() async {
     await _postsService.loadInitialVideoPosts();
-    // _postsService.loadInitialImagePosts();
+    _cameraService.getAvailableDeviceCameras();
     makeAppLoaded = true;
   }
 }

@@ -10,6 +10,8 @@ class Playback {
   Future<void>? _initializeVideoPlayerFuture;
   Future<void>? get initializeVideoPlayerFuture => _initializeVideoPlayerFuture;
 
+  bool videoVisibility = false; // video visibility - hide/show for performance improvment
+
   Future<Null> loadController() async {
     videoController = VideoPlayerController.network(
       url!,

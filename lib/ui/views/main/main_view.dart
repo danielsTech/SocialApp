@@ -1,11 +1,6 @@
-import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
 import 'package:social_app/app/utils/screen.dart';
-import 'package:social_app/app/provider/screen.dart';
-import 'package:social_app/app/router/router.dart';
 import 'package:social_app/ui/views/bbar/bottom_bar_view.dart';
-import 'package:social_app/app/extensions/list_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:social_app/ui/views/main/main_view_model.dart';
 import 'package:social_app/ui/views/main/screen_wrapper.dart';

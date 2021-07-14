@@ -4,12 +4,11 @@ import 'package:social_app/app/locator/locator.dart';
 import 'package:social_app/appEntry.dart';
 import 'package:social_app/ui/views/main/main_view_model.dart';
 
-void main(List<String> args) {
+Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   AppLocator.setupLocator();
 
-  MainViewModel _mainViewModel = MainViewModel();
-  _mainViewModel.appInitialLoad();
+  MainViewModel().appInitialLoad();
 
-  runApp(AppEntry(mainViewModel: _mainViewModel));
+  runApp(AppEntry());
 }

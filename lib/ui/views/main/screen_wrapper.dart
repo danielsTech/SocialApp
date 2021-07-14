@@ -15,52 +15,57 @@ class _ScreenWrapperState extends State<ScreenWrapper> {
   Widget build(BuildContext context) {
     return Consumer<ScreenProvider>(
       builder: (context, screenData, _) {
-        return Stack(
-          children: List.generate(
-            AppRouter.pageKeysString.length,
-            (index) => _buildOffstageNavigator(
-              AppRouter.pageKeysString[index],
-              screenData.currentPageString,
-            ),
-          ),
+        return IndexedStack(
+          children: AppRouter.pageWidgets.map((screen) => screen).toList(),
+          index: screenData.screenSelectedIndex,
         );
-      },
-    );
-  }
-
-  Widget _buildOffstageNavigator(String tabItem, String currentItem) {
-    return Offstage(
-      offstage: currentItem != tabItem,
-      child: _TabNavigator(
-        navigatorKey: AppRouter.navigatorKeys[tabItem],
-        tabItem: tabItem,
-      ),
-    );
-  }
-}
-
-class _TabNavigator extends StatelessWidget {
-  final GlobalKey<NavigatorState>? navigatorKey;
-  final String? tabItem;
-
-  _TabNavigator({
-    this.navigatorKey,
-    this.tabItem,
-  }) : assert(navigatorKey != null);
-
-  @override
-  Widget build(BuildContext context) {
-    late Widget child;
-
-    for (int pageKeyIndex = 0; pageKeyIndex < AppRouter.pageKeysString.length; pageKeyIndex++) {
-      if (tabItem == AppRouter.pageKeysString[pageKeyIndex]) child = AppRouter.pageWidgets[pageKeyIndex];
-    }
-
-    return Navigator(
-      key: navigatorKey!,
-      onGenerateRoute: (routeSettings) {
-        return MaterialPageRoute(builder: (context) => child);
+        // return Stack(
+        //   children: List.generate(
+        //     AppRouter.pageKeysString.length,
+        //     (index) => _buildOffstageNavigator(
+        //       AppRouter.pageKeysString[index],
+        //       screenData.currentPageString,
+        //     ),
+        //   ),
+        // );
       },
     );
   }
 }
+
+//   Widget _buildOffstageNavigator(String tabItem, String currentItem) {
+//     return Offstage(
+//       offstage: currentItem != tabItem,
+//       child: _TabNavigator(
+//         navigatorKey: AppRouter.navigatorKeys[tabItem],
+//         tabItem: tabItem,
+//       ),
+//     );
+//   }
+// }
+
+// class _TabNavigator extends StatelessWidget {
+//   final GlobalKey<NavigatorState>? navigatorKey;
+//   final String? tabItem;
+
+//   _TabNavigator({
+//     this.navigatorKey,
+//     this.tabItem,
+//   }) : assert(navigatorKey != null);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     late Widget child;
+
+//     for (int pageKeyIndex = 0; pageKeyIndex < AppRouter.pageKeysString.length; pageKeyIndex++) {
+//       if (tabItem == AppRouter.pageKeysString[pageKeyIndex]) child = AppRouter.pageWidgets[pageKeyIndex];
+//     }
+
+//     return Navigator(
+//       key: navigatorKey!,
+//       onGenerateRoute: (routeSettings) {
+//         return MaterialPageRoute(builder: (context) => child);
+//       },
+//     );
+//   }
+// }
