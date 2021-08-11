@@ -7,18 +7,27 @@ class AnimationControllers {
   static AnimationController? playAndPauseAnimationController;
   static AnimationController? playAndPauseIconAnimationController;
 
-  // MAIN SCREEN SWITCH
-  static AnimationController? screenSwitchPartOneAnimationController;
-  static AnimationController? screenSwitchPartTwoAnimationController;
+  // BUTTONS BOUNCE
+  static AnimationController? ttFeedButtonBounceAnimationController;
+  static AnimationController? igFeedButtonBounceAnimationController;
+  static AnimationController? blocButtonBounceAnimationController;
+  static AnimationController? accountButtonBounceAnimationController;
+  static AnimationController? plusButtonBounceAnimationController;
+
+  // OTHER
+  static AnimationController? plusButtonHideAnimationController;
 }
 
 class AnimationTweens {
   // PLAY - PAUSE ICON
   static Animation<double>? playAndPauseAnimation;
 
-  // MAIN SCREEN SWITCH
-  static Animation<double>? screenSwitchPartOneAnimation;
-  static Animation<double>? screenSwitchPartTwoAnimation;
+  // BUTTONS BOUNCE
+  static Animation<double>? ttFeedButtonBounceAnimation;
+  static Animation<double>? igFeedButtonBounceAnimation;
+  static Animation<double>? blocButtonBounceAnimation;
+  static Animation<double>? accountButtonBounceAnimation;
+  static Animation<double>? plusButtonBounceAnimation;
 }
 
 class AnimationsInitializer {
@@ -34,7 +43,7 @@ class AnimationsInitializer {
       CurvedAnimation(parent: controller, curve: curve);
 
   void initializeAnimations() {
-    // CONTROLLERS
+    // ****************************************************** CONTROLLERS
 
     // PLAY - PAUSE ICON
     AnimationControllers.playAndPauseAnimationController = AnimationController(
@@ -46,29 +55,57 @@ class AnimationsInitializer {
       duration: AnimationDurations.videoPlayAndPauseIconAnimationDuration,
     );
 
-    // MAIN SCREEN SWITCH
-    AnimationControllers.screenSwitchPartOneAnimationController = AnimationController(
+    // BUTTONS BOUNCE
+    AnimationControllers.ttFeedButtonBounceAnimationController = AnimationController(
       vsync: _tickerProvider,
-      duration: AnimationDurations.halfScreenSwitchAnimationDuration,
+      duration: AnimationDurations.buttonsBounceAnimationDuration,
     );
-    AnimationControllers.screenSwitchPartTwoAnimationController = AnimationController(
+    AnimationControllers.igFeedButtonBounceAnimationController = AnimationController(
       vsync: _tickerProvider,
-      duration: AnimationDurations.halfScreenSwitchAnimationDuration,
+      duration: AnimationDurations.buttonsBounceAnimationDuration,
+    );
+    AnimationControllers.blocButtonBounceAnimationController = AnimationController(
+      vsync: _tickerProvider,
+      duration: AnimationDurations.buttonsBounceAnimationDuration,
+    );
+    AnimationControllers.accountButtonBounceAnimationController = AnimationController(
+      vsync: _tickerProvider,
+      duration: AnimationDurations.buttonsBounceAnimationDuration,
+    );
+    AnimationControllers.plusButtonBounceAnimationController = AnimationController(
+      vsync: _tickerProvider,
+      duration: AnimationDurations.buttonsBounceAnimationDuration,
+    );
+    AnimationControllers.plusButtonHideAnimationController = AnimationController(
+      vsync: _tickerProvider,
+      duration: Duration(milliseconds: AnimationDurations.cameraScreenOpenAnimationDuration.inMilliseconds - 200),
     );
 
-    // TWEENS
+    //
+    //
+    //
+    // ****************************************************** TWEENS
 
     // PLAY - PAUSE ICON
     AnimationTweens.playAndPauseAnimation =
         setAnimation(AnimationControllers.playAndPauseAnimationController!, Curves.fastOutSlowIn)
             .drive(setValTween(0.0, 1.0));
 
-    // MAIN SCREEN SWITCH
-    AnimationTweens.screenSwitchPartOneAnimation =
-        setAnimation(AnimationControllers.screenSwitchPartOneAnimationController!, Curves.easeInToLinear)
-            .drive(setValTween(0.0, 1.0));
-    AnimationTweens.screenSwitchPartTwoAnimation =
-        setAnimation(AnimationControllers.screenSwitchPartTwoAnimationController!, Curves.linearToEaseOut)
-            .drive(setValTween(0.0, 1.0));
+    // BUTTONS BOUNCE
+    AnimationTweens.ttFeedButtonBounceAnimation =
+        setAnimation(AnimationControllers.ttFeedButtonBounceAnimationController!, Curves.easeOutSine)
+            .drive(setValTween(1.0, 0.9));
+    AnimationTweens.igFeedButtonBounceAnimation =
+        setAnimation(AnimationControllers.igFeedButtonBounceAnimationController!, Curves.easeOutSine)
+            .drive(setValTween(1.0, 0.9));
+    AnimationTweens.blocButtonBounceAnimation =
+        setAnimation(AnimationControllers.blocButtonBounceAnimationController!, Curves.easeOutSine)
+            .drive(setValTween(1.0, 0.9));
+    AnimationTweens.accountButtonBounceAnimation =
+        setAnimation(AnimationControllers.accountButtonBounceAnimationController!, Curves.easeOutSine)
+            .drive(setValTween(1.0, 0.9));
+    AnimationTweens.plusButtonBounceAnimation =
+        setAnimation(AnimationControllers.plusButtonBounceAnimationController!, Curves.easeOutSine)
+            .drive(setValTween(1.0, 0.85));
   }
 }

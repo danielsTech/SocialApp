@@ -15,7 +15,7 @@ class TTFeedView extends StatefulWidget {
 class _TTFeedViewState extends State<TTFeedView> {
   final _feedViewModel = AppLocator.locator<FeedViewModel>();
 
-  static final Radius _clipRadiusTop = Radius.circular(10.0);
+  static final Radius _clipRadiusTop = Radius.circular(14.0);
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +35,19 @@ class _TTFeedViewState extends State<TTFeedView> {
             onPageChanged: (index) => _feedViewModel.onTTHalfSwipe(index),
             itemCount: _feedViewModel.videoPostsCount,
             itemBuilder: (context, index) {
-              final _post = _feedViewModel.getCurrentVideoPost(index);
-              return TTPost(_post);
+              final _post = _feedViewModel.allVideoPosts[index];
+
+              final bool _isVisible = _post.playback!.videoVisibility;
+
+              return Visibility(
+                maintainInteractivity: _isVisible,
+                maintainAnimation: _isVisible,
+                maintainState: _isVisible,
+                maintainSemantics: _isVisible,
+                maintainSize: _isVisible,
+                visible: _isVisible,
+                child: TTPost(_post),
+              );
             },
           ),
         ),

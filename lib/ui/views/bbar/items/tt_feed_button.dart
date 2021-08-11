@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:social_app/app/anim/controllers.dart';
 import 'package:social_app/app/data/const.dart';
 import 'package:social_app/app/provider/screen.dart';
-import 'package:social_app/app/router/router.dart';
-import 'package:social_app/ui/views/bbar/bottom_bar_view_model.dart';
-import 'package:stacked/stacked.dart';
+import 'package:social_app/app/extensions/widget_extensions.dart';
 
-class TTFeedButton extends ViewModelWidget<BottomBarViewModel> {
-  const TTFeedButton({Key? key}) : super(key: key, reactive: true);
-
+class TTFeedButton extends StatelessWidget {
   @override
-  Widget build(BuildContext context, BottomBarViewModel viewModel) {
-    return GestureDetector(
-      onTap: () {
-        Provider.of<ScreenProvider>(context, listen: false)
-            .selectBottomNavigationBarTab(AppRouter.pageKeysString[0], 0);
-      },
-      behavior: HitTestBehavior.translucent,
-      child: Container(
-        height: AppConstants.bottomBarHeight,
-        child: Icon(
-          Icons.subject_rounded,
-          size: 30.0,
-          color: viewModel.selectedTabIndex == 0 ? Colors.white : viewModel.unselectedTabColor,
+  Widget build(BuildContext context) {
+    return Consumer<ScreenProvider>(
+      builder: (context, screenData, _) => GestureDetector(
+        onTap: () {
+          Provider.of<ScreenProvider>(context, listen: false).selectBottomNavigationBarTab(0);
+        },
+        onTapDown: (_) => screenData.ttFeedButtonBounceController.forward(),
+        onTapUp: (_) => screenData.ttFeedButtonBounceController.reverse(),
+        onTapCancel: () => screenData.ttFeedButtonBounceController.reverse(),
+        behavior: HitTestBehavior.translucent,
+        child: Container(
+          height: AppConstants.bottomBarHeight,
+          child: Icon(
+            Icons.subject_rounded,
+            size: 30.0,
+            color: screenData.screenSelectedIndex == 0 ? Colors.white : Colors.white70,
+          ).scale(AnimationTweens.ttFeedButtonBounceAnimation!.value),
         ),
       ),
     );

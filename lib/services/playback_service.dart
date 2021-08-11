@@ -1,7 +1,5 @@
-import 'package:flutter/rendering.dart';
 import 'package:social_app/app/locator/locator.dart';
 import 'package:social_app/app/models/playback.dart';
-import 'package:social_app/app/utils/functions.dart';
 import 'package:social_app/mock_data.dart';
 import 'package:social_app/services/posts_service.dart';
 import 'package:social_app/ui/views/feed/feed_view_model.dart';
@@ -14,6 +12,10 @@ class PlaybackSerivce {
 
   Future<void> videoPlaybackLoad(int index) async {
     if (index < _postsService.videosPostsCount) {
+      if (index < 3) {
+        _postsService.videoPosts[index].playback!.videoVisibility = true;
+      }
+
       await _postsService.videoPosts[index].playback?.loadController();
       if (index == 0) await _postsService.videoPosts[index].playback?.videoController!.playVideo;
     }
@@ -46,6 +48,4 @@ class PlaybackSerivce {
     _prevPlayback.videoController!.pauseVideo;
     _currPlayback.videoController!.playVideo;
   }
-
-  // bool isVideoPlaying(VideoPlayerController _videoController) => _videoController.isVideoPlaying;
 }

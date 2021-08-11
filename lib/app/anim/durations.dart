@@ -3,8 +3,10 @@ class AnimationDurations {
   static const Duration videoPlayAndPauseAnimationDuration = const Duration(milliseconds: 180);
   static const Duration videoPlayAndPauseIconAnimationDuration = const Duration(milliseconds: 125);
 
-  // MAIN SCREEN SWITCH
-  static const Duration mainScreenSwitchAnimationDuration = const Duration(milliseconds: 280);
-  static Duration halfScreenSwitchAnimationDuration =
-      Duration(milliseconds: mainScreenSwitchAnimationDuration.inMilliseconds ~/ 2);
+  // BUTTONS BOUNCE
+  static const Duration buttonsBounceAnimationDuration = const Duration(milliseconds: 90);
+
+  // OTHER
+  static const Duration cameraScreenOpenAnimationDuration = const Duration(milliseconds: 400);
+  static const Duration cameraViewFadeAnimationDuration = const Duration(milliseconds: 400);
 }

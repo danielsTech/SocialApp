@@ -6,17 +6,12 @@ import 'package:social_app/app/locator/locator.dart';
 import 'package:social_app/app/provider/screen.dart';
 import 'package:social_app/app/router/router.dart';
 import 'package:social_app/app/router/routes.dart';
-import 'package:social_app/app/theme/themer.dart';
 import 'package:social_app/app/theme/themes.dart';
-import 'package:social_app/ui/views/main/main_view_model.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class AppEntry extends StatefulWidget {
-  MainViewModel? mainViewModel;
-
   AppEntry({
     Key? key,
-    this.mainViewModel,
   }) : super(key: key);
 
   @override
@@ -51,9 +46,7 @@ class _AppEntryState extends State<AppEntry> with TickerProviderStateMixin {
           onGenerateRoute: AppRouter.generateRoute,
           initialRoute: _initialRoute,
           navigatorKey: _navigatorKey,
-          // themeMode: _themeProvider.themeMode,
-          darkTheme: AppThemes.darkTheme,
-          // theme: AppThemes.lightTheme,
+          theme: AppThemes.darkTheme,
         );
       },
     );

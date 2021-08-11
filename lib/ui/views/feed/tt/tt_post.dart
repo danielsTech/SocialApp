@@ -26,10 +26,10 @@ class TTPost extends ViewModelWidget<FeedViewModel> {
         fit: StackFit.expand,
         children: [
           _playback,
-          _rightBar,
+          // _rightBar,
           _playOrPause,
           _descriptionFade,
-          _usernameAndEmail,
+          // _usernameAndEmail,
         ],
       ),
     );
